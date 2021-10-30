@@ -23,7 +23,11 @@ public class FactsController {
     @Value("${facts.server:http://localhost:8080/dummy}")
     public String factsServer;
 
-    private static final Path path = Paths.get("facts.txt");
+    private final Path path;
+
+    public FactsController(@Value("${facts.location:facts.txt}") String factsLocation) {
+        path = Paths.get(factsLocation);
+    }
 
     /**
      * Method that gets facts.

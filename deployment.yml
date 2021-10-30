@@ -43,8 +43,6 @@ spec:
 
 ---
 
----
-
 apiVersion: v1
 kind: Pod
 metadata:
@@ -66,8 +64,10 @@ spec:
       env:
         - name: FACTS_SERVER
           value: "comp4000port/printerfacts"
+        - name: FACTS_LOCATION
+          value: "/opt/data/facts.txt"
       volumeMounts:
-        - mountPath: "/opt/app"
+        - mountPath: "/opt/data"
           name: task-pv-storage
   restartPolicy: Never
 
@@ -86,7 +86,7 @@ spec:
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: "/opt"
+    path: "/tmp/hostpath_pv/data"
 
 ---
 
